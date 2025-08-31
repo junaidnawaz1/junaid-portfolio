@@ -15,7 +15,7 @@ const Projects = () => {
     {
       id: 2,
       title: "Snipix Link Shortener",
-      img: "https://i.ibb.co/V6yPg6m/porfolio.jpg",
+      img: "https://i.ibb.co/8nqdjFsY/Whats-App-Image-2025-08-31-at-13-48-28-e8130813.jpg",
       link: "https://www.snipix.tech/",
       desc: "Transform long, complex URLs into short, memorable links with our powerful shortening technology. QR Code Generation. Its not a project it a Live SaaS",
       special: true, // 🔥 shadow glow effect
@@ -26,7 +26,7 @@ const Projects = () => {
     {
       id: 1,
       title: "Shoplify For Selling Products",
-      img: "https://www.snipix.tech/rwbMI_",
+      img: "https://i.ibb.co/spN6MnNH/Whats-App-Image-2025-08-31-at-14-06-55-823918d7.jpg",
       link: "https://sana-ecommerce.wuaze.com/",
       desc: "WordPress WooCommerce Online Shop With Elementor.",
     },
@@ -55,7 +55,7 @@ const Projects = () => {
       `}
     >
       {/* Image */}
-      <div className="relative overflow-hidden w-full h-56 rounded-t-2xl">
+      <div className="relative overflow-hidden w-full h-66 rounded-t-2xl">
         <img
           src={project.img}
           alt={project.title}
