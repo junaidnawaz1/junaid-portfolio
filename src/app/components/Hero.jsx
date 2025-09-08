@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Left Side - Profile Image */}
       <div className="flex justify-center md:w-1/2 mb-8 md:mb-0">
         <img
-          src="https://www.snipix.tech/pick-ha"
+          src="https://i.ibb.co/FLV89Hs6/Whats-Appme.jpg"
           alt="Junaid Profile"
           className="w-56 h-56 md:w-80 md:h-80 rounded-full border-4 border-purple-500 shadow-lg object-cover"
         />
