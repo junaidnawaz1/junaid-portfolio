@@ -49,7 +49,7 @@ const Projects = () => {
       className={`
         relative overflow-hidden rounded-2xl transition-all duration-300 transform
         ${project.special 
-          ? "bg-slate-800 shadow-[0_0_25px_5px_rgba(6,182,212,0.5)] hover:shadow-[0_0_35px_8px_rgba(6,182,212,0.6)]" 
+          ? "bg-slate-800 shadow-[0_0_25px_5px_rgba(147,51,234,0.5)] hover:shadow-[0_0_35px_8px_rgba(147,51,234,0.6)]" 
           : "bg-slate-800 shadow-xl hover:shadow-2xl"
         }
       `}
