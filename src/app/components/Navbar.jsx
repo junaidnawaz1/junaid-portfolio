@@ -11,15 +11,15 @@ const Navbar = () => {
     { id: 2, link: "skills" },
     { id: 3, link: "projects" },
     { id: 4, link: "contact" },
-        { id: 5, link: "about" },
-
+    { id: 5, link: "about" },
   ];
 
   return (
-    <div className="fixed w-full h-16 flex justify-between items-center px-6 bg-slate-900 text-white z-50 shadow-2xl shadow-purple-500/50
-">
+    <div className="fixed w-full h-16 flex justify-between items-center px-6 bg-slate-900 text-white z-50 shadow-2xl shadow-purple-500/50">
       {/* Logo */}
-      <h1 className="text-2xl font-bold text-purple-500">Junaid's Portfolio</h1>
+      <h1 className="text-2xl font-bold text-purple-500 cursor-pointer">
+        <a href="#home">Junaid's Portfolio</a>
+      </h1>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-6">
