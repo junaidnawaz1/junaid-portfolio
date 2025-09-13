@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaReact, FaWordpress } from "react-icons/fa";
 
 const Projects = () => {
   const mernProjects = [
@@ -108,7 +108,7 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-3xl font-bold text-purple-400 mb-8 text-center"
         >
-          🚀 MERN Stack
+          <FaReact className="inline-block mr-2 text-cyan-400" /> MERN Stack
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {mernProjects.map(renderProjectCard)}
@@ -124,7 +124,7 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-3xl font-bold text-purple-400 mb-8 text-center"
         >
-          🌐 WordPress
+          <FaWordpress className="inline-block mr-2 text-blue-400" /> WordPress
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {wpProjects.map(renderProjectCard)}
