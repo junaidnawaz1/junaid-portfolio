@@ -8,25 +8,24 @@ const Hero = () => {
     <section
       id="home"
       className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-slate-900 text-white px-6 pt-28 md:pt-0" 
-      // ↑ Added pt-28 to push content below navbar on mobile
+      // ↑ pt-28 pushes content below navbar on mobile
     >
       {/* Left Side - Profile Image */}
       <div className="flex justify-center md:w-1/2 mb-8 md:mb-0">
         <img
           src="https://i.ibb.co/FLV89Hs6/Whats-Appme.jpg"
           alt="Junaid Profile"
-          className="w-40 h-40 sm:w-48 sm:h-48 md:w-80 md:h-80 rounded-full border-4 border-purple-500 shadow-lg object-cover"
-          // ↑ Smaller size on mobile so it doesn't overflow
+          className="w-56 h-56 md:w-80 md:h-80 rounded-full border-4 border-purple-500 shadow-lg object-cover"
         />
       </div>
 
       {/* Right Side - Text */}
       <div className="md:w-1/2 text-center md:text-left">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-purple-500 mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-purple-500 mb-4">
           Hi, I’m Junaid
         </h1>
 
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4">
           <Typewriter
             words={[
               "MERN Stack Developer",
@@ -48,7 +47,7 @@ const Hero = () => {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start flex-wrap">
+        <div className="flex flex-row gap-4 justify-center md:justify-start flex-wrap">
           {/* Download CV */}
           <a
             href="/Junaid_CV.pdf"
