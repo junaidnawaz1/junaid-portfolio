@@ -49,9 +49,9 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
           {/* Download CV */}
           <a
-            href="/Junaid-CV.pdf"
+            href="/Junaid_CV.pdf"
             download
-            className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-md transform hover:scale-105"
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-indigo-500 hover:bg-indigo-600 transition-all duration-300 shadow-md transform hover:scale-105"
           >
             <FaDownload />
             Download CV
