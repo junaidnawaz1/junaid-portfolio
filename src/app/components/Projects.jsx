@@ -8,7 +8,7 @@ const Projects = () => {
     {
       id: 1,
       title: "An E-commerce Store",
-      img: "https://i.ibb.co/LhSwt3nb/portfo.jpg",
+      img: "https://ibb.co/hFCSDshc",
       link: "https://mern-e-commerce-user-frontend.vercel.app/",
       desc: "A full-stack E-commerce Seller built with MERN stack.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"], // ✅ new
