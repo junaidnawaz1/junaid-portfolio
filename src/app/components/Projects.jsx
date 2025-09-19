@@ -106,7 +106,7 @@ const Projects = () => {
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex items-center justify-center px-6 py-3 text-white rounded-full transition-all duration-300 shadow-md transform hover:scale-105 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
+          className="mt-6 flex items-center justify-center px-6 py-3 text-white rounded-full transition-all duration-300 shadow-md transform hover:scale-105 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800"
         >
           Visit Website
           <FaExternalLinkAlt className="ml-2 text-sm" />
