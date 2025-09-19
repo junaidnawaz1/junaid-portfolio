@@ -20,7 +20,7 @@ const Projects = () => {
       link: "https://www.snipix.tech/",
       desc: "Transform long, complex URLs into short, memorable links with our powerful shortening technology. QR Code Generation. Its not a project it a Live SaaS",
       special: true, // 🔥 shadow glow effect
-      tech: ["React.js", "Next.js", "MongoDB", "TailwindCSS", "Vercel"], // ✅ new
+      tech: ["React.js" , "Node.js" , "MongoDB", "TailwindCSS", "Vercel"], // ✅ new
     },
   ];
 
@@ -94,7 +94,7 @@ const Projects = () => {
           {project.tech?.map((tag, i) => (
             <span
               key={i}
-              className="px-3 py-1 text-xs rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-sm"
+              className="px-3 py-1 text-xs rounded-full bg-indigo-600 text-white font-medium shadow-sm"
             >
               {tag}
             </span>
