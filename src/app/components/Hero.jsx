@@ -1,6 +1,7 @@
 "use client";
 
 import { Typewriter } from "react-simple-typewriter";
+import { FaDownload, FaWhatsapp } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -25,7 +26,11 @@ const Hero = () => {
 
         <h2 className="text-2xl md:text-3xl font-semibold mb-4">
           <Typewriter
-            words={["MERN Stack Developer", "WordPress Elementor Expert", "Freelancer"]}
+            words={[
+              "MERN Stack Developer",
+              "WordPress Elementor Expert",
+              "Freelancer",
+            ]}
             loop={true}
             cursor
             cursorStyle="|"
@@ -35,10 +40,34 @@ const Hero = () => {
           />
         </h2>
 
-        <p className="text-gray-300 max-w-md mx-auto md:mx-0">
-          I build modern web applications with React, Node.js, and WordPress. 
+        <p className="text-gray-300 max-w-md mx-auto md:mx-0 mb-6">
+          I build modern web applications with React, Node.js, and WordPress.
           Passionate about creating user-friendly designs and scalable solutions.
         </p>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
+          {/* Download CV */}
+          <a
+            href="/Junaid-CV.pdf"
+            download
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition-all duration-300 shadow-md transform hover:scale-105"
+          >
+            <FaDownload />
+            Download CV
+          </a>
+
+          {/* WhatsApp Contact */}
+          <a
+            href="https://wa.me/923278001312?text=Hi%20Junaid,%20I%20found%20your%20portfolio%20and%20want%20to%20connect!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-md transform hover:scale-105"
+          >
+            <FaWhatsapp />
+            Contact on WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );
