@@ -11,6 +11,7 @@ const Projects = () => {
       img: "https://i.ibb.co/LhSwt3nb/portfo.jpg",
       link: "https://mern-e-commerce-user-frontend.vercel.app/",
       desc: "A full-stack E-commerce Seller built with MERN stack.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"], // ✅ new
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ const Projects = () => {
       link: "https://www.snipix.tech/",
       desc: "Transform long, complex URLs into short, memorable links with our powerful shortening technology. QR Code Generation. Its not a project it a Live SaaS",
       special: true, // 🔥 shadow glow effect
+      tech: ["React.js", "Next.js", "MongoDB", "TailwindCSS", "Vercel"], // ✅ new
     },
   ];
 
@@ -29,12 +31,18 @@ const Projects = () => {
       img: "https://i.ibb.co/spN6MnNH/Whats-App-Image-2025-08-31-at-14-06-55-823918d7.jpg",
       link: "https://sana-ecommerce.wuaze.com/",
       desc: "WordPress WooCommerce Online Shop With Elementor.",
+      tech: ["WordPress", "WooCommerce", "Elementor"], // ✅ new
     },
   ];
 
   const cardAnimation = {
-    initial: { opacity: 0, y: 50 },
-    whileInView: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    initial: { opacity: 0, y: 40, scale: 0.95 },
+    whileInView: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   const renderProjectCard = (project) => (
@@ -44,22 +52,22 @@ const Projects = () => {
       initial="initial"
       whileInView="whileInView"
       viewport={{ once: true }}
-      whileHover={{ scale: 1.03 }}
+      whileHover={{ scale: 1.04 }}
       transition={{ duration: 0.3 }}
       className={`
-        relative overflow-hidden rounded-2xl transition-all duration-300 transform
-        ${project.special 
-          ? "bg-slate-800 shadow-[0_0_25px_5px_rgba(147,51,234,0.5)] hover:shadow-[0_0_35px_8px_rgba(147,51,234,0.6)]" 
-          : "bg-slate-800 shadow-xl hover:shadow-2xl"
+        relative overflow-hidden rounded-2xl transition-all duration-300
+        ${project.special
+          ? "bg-slate-800 shadow-[0_0_25px_5px_rgba(236,72,153,0.5)] hover:shadow-[0_0_35px_10px_rgba(236,72,153,0.7)]"
+          : "bg-slate-800 shadow-lg hover:shadow-2xl"
         }
       `}
     >
       {/* Image */}
-      <div className="relative overflow-hidden w-full h-66 rounded-t-2xl">
+      <div className="relative overflow-hidden w-full h-64 rounded-t-2xl">
         <img
           src={project.img}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         />
       </div>
 
@@ -67,14 +75,31 @@ const Projects = () => {
       <div className="p-6 bg-slate-800 relative z-10">
         <h3 className="text-xl font-semibold text-purple-300">{project.title}</h3>
         <p className="text-sm font-light text-gray-300 mt-2">
-          {project.desc.split('. ').map((sentence, index, array) => 
+          {project.desc.split(". ").map((sentence, index, array) =>
             index === array.length - 1 ? (
-              <strong key={index} className="font-bold text-cyan-300">{sentence}</strong>
+              <strong
+                key={index}
+                className="font-bold text-pink-400"
+              >
+                {sentence}
+              </strong>
             ) : (
               <span key={index}>{sentence}. </span>
             )
           )}
         </p>
+
+        {/* Tech Tags */}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {project.tech?.map((tag, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 text-xs rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium shadow-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
 
         {/* Button */}
         <a
@@ -108,7 +133,7 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-3xl font-bold text-purple-400 mb-8 text-center"
         >
-          <FaReact className="inline-block mr-2 text-cyan-400" /> MERN Stack
+          <FaReact className="inline-block mr-2 text-pink-400" /> MERN Stack
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {mernProjects.map(renderProjectCard)}
@@ -124,7 +149,7 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-3xl font-bold text-purple-400 mb-8 text-center"
         >
-          <FaWordpress className="inline-block mr-2 text-blue-400" /> WordPress
+          <FaWordpress className="inline-block mr-2 text-pink-400" /> WordPress
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {wpProjects.map(renderProjectCard)}
