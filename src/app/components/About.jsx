@@ -97,7 +97,7 @@ const About = () => {
                      hover:shadow-purple-500/50"
         >
           <FaCode className="text-5xl text-purple-400 mb-4 transition-colors group-hover:text-purple-300" />
-          <h3 className="font-bold text-xl text-white mb-2 tracking-wide">Clean Code & Performance</h3>
+          <h3 className="font-bold text-xl text-center text-white mb-2 tracking-wide">Clean Code & Performance</h3>
           <p className="text-gray-400 text-base text-center">
             Writing efficient, scalable, and maintainable code is my top priority for long-term project success.
           </p>
