@@ -75,7 +75,7 @@ const Hero = () => {
         </h2>
 
         <p className="hero-desc text-gray-400 max-w-md mx-auto md:mx-0 mb-8 leading-relaxed">
-          I build modern, high-performance web applications with **React**, **Node.js**, and **WordPress**. Passionate about creating **user-friendly designs** and **scalable solutions**.
+          I build modern, high-performance web applications with React.js, Next.js, Node.js, and WordPress. Passionate about creating user-friendly designs and scalable solutions.
         </p>
 
         {/* Action Buttons */}
