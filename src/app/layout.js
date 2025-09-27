@@ -14,7 +14,13 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Junaid Nawaz | Web Developer & SaaS Builder",
   description: "Portfolio of Junaid Nawaz - MERN Stack Developer, SaaS Builder, and WordPress Expert.",
+  icons: {
+    icon: "/favicon.png",       // Standard
+    shortcut: "/favicon.png",   // Shortcut
+    apple: "/favicon.png",      // Apple devices
+  },
 };
+
 
 
 export default function RootLayout({ children }) {

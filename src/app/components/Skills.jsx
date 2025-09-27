@@ -17,34 +17,53 @@ const Skills = () => {
   ];
 
   return (
-    <section    //bg-gradient-to-r from-purple-400 to-pink-600
+    <section
       id="skills"
-      className="min-h-screen bg-slate-900 text-white flex flex-col items-center py-16"
+      // Enhanced background for a distinct section look, padding increased
+      className="bg-slate-900 text-white flex flex-col items-center py-24 px-6 relative"
     >
-       <motion.h2
+      {/* Optional: Add a subtle separator line or glow effect at the top */}
+      <div className="w-full max-w-5xl h-[2px] bg-purple-500 opacity-20 mb-16 rounded-full"></div>
+
+      <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-pink-600 mb-12"
+        viewport={{ once: true, amount: 0.5 }}
+        // Consistent gradient title style from the Hero component
+        className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 mb-16 tracking-tighter"
       >
-        My Skills
+        Core Expertise
       </motion.h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-        {skills.map(({ id, name, icon }, index) => (
-          <motion.div
-            key={id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center justify-center bg-slate-800 p-6 rounded-xl shadow-lg border-2 border-transparent hover:border-purple-500 hover:scale-105 hover:translate-y-[-5px] transition-all duration-300 relative"
-          >
-            {icon}
-            <p className="mt-3 text-lg font-medium">{name}</p>
-          </motion.div>
-        ))}
+      <div className="w-full max-w-5xl">
+        {/* Adjusted grid for better spacing and layout on various screens */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+          {skills.map(({ id, name, icon }, index) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }} // Adjusted delay for a smoother stagger
+              viewport={{ once: true, amount: 0.6 }}
+              className="flex flex-col items-center justify-center bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-xl shadow-slate-950/50 
+                       border border-slate-700/50 cursor-pointer 
+                       hover:bg-slate-700/70 hover:shadow-purple-500/30 hover:translate-y-[-5px] 
+                       transition-all duration-300 ease-in-out group relative overflow-hidden"
+            >
+              {/* Subtle gradient overlay for the card background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-900/0 to-slate-800/0 group-hover:from-purple-900/10 group-hover:to-slate-800/10 transition-all duration-500"></div>
+
+              {/* Icon */}
+              <div className="relative z-10 p-2 rounded-full transition-transform duration-300 group-hover:scale-110">
+                {icon}
+              </div>
+              
+              {/* Skill Name */}
+              <p className="relative z-10 mt-4 text-xl font-semibold text-gray-100 tracking-wide">{name}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
