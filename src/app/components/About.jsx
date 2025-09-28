@@ -110,30 +110,14 @@ const About = () => {
           }
         }
 
-        /* New background animation similar to WISE */
-        .wise-bg {
-          background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
+        /* Your animated gradient background */
+        .animated-bg {
+          background: linear-gradient(-45deg, #6a00f4, #2400ff, #00d4ff, #ff00d4);
           background-size: 400% 400%;
-          animation: wiseGradient 15s ease infinite;
-          position: relative;
-          overflow: hidden;
+          animation: gradientMove 12s ease infinite;
         }
 
-        .wise-bg::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: 
-            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
-          animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes wiseGradient {
+        @keyframes gradientMove {
           0% {
             background-position: 0% 50%;
           }
@@ -144,15 +128,6 @@ const About = () => {
             background-position: 0% 50%;
           }
         }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.5;
-          }
-          50% {
-            opacity: 0.8;
-          }
-        }
       `}</style>
 
       <section
@@ -160,8 +135,8 @@ const About = () => {
         ref={sectionRef}
         className="relative w-full text-white overflow-hidden"
       >
-        {/* New WISE-style Background */}
-        <div ref={backgroundRef} className="absolute inset-0 -z-20 wise-bg"></div>
+        {/* Your Animated Gradient Background */}
+        <div ref={backgroundRef} className="absolute inset-0 -z-20 animated-bg"></div>
 
         {/* Floating Bubbles */}
         <div className="bubbles-container -z-10">
@@ -228,7 +203,7 @@ const About = () => {
                 ].map((card, i) => (
                   <div
                     key={i}
-                    className="about-card flex flex-col items-start bg-black/30 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-800/60 hover:-translate-y-1 transition-all duration-500"
+                    className="about-card flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
                   >
                     {card.icon}
                     <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
