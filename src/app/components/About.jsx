@@ -106,26 +106,7 @@ const About = () => {
 
         @media (min-width: 768px) {
           #about-pin-container {
-            min-height: 200vh; /* Adjusted for better scrolling experience */
-          }
-        }
-
-        /* Your animated gradient background */
-        .animated-bg {
-          background: linear-gradient(-45deg, #6a00f4, #2400ff, #00d4ff, #ff00d4);
-          background-size: 400% 400%;
-          animation: gradientMove 12s ease infinite;
-        }
-
-        @keyframes gradientMove {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
+            min-height: 200vh;
           }
         }
       `}</style>
@@ -135,7 +116,7 @@ const About = () => {
         ref={sectionRef}
         className="relative w-full text-white overflow-hidden"
       >
-        {/* Your Animated Gradient Background */}
+        {/* Using the global CSS animated-bg class */}
         <div ref={backgroundRef} className="absolute inset-0 -z-20 animated-bg"></div>
 
         {/* Floating Bubbles */}
