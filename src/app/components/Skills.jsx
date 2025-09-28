@@ -19,48 +19,51 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      // Enhanced background for a distinct section look, padding increased
-      className="bg-slate-900 text-white flex flex-col items-center py-24 px-6 relative"
+      className="relative py-24 px-6 flex flex-col items-center overflow-hidden"
     >
-      {/* Optional: Add a subtle separator line or glow effect at the top */}
-      <div className="w-full max-w-5xl h-[2px] bg-purple-500 opacity-20 mb-16 rounded-full"></div>
+      {/* Animated Illustration Background */}
+      <div className="absolute inset-0 -z-10 animated-bg opacity-80"></div>
+      <div className="absolute top-20 right-20 w-72 h-72 bg-purple-500/30 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-64 h-64 bg-cyan-500/30 rounded-full blur-[100px] animate-pulse"></div>
 
+      {/* Title */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.7 }}
         viewport={{ once: true, amount: 0.5 }}
-        // Consistent gradient title style from the Hero component
-        className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 mb-16 tracking-tighter"
+        className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-16 tracking-tight"
       >
         Core Expertise
       </motion.h2>
 
-      <div className="w-full max-w-5xl">
-        {/* Adjusted grid for better spacing and layout on various screens */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+      {/* Skills Grid */}
+      <div className="w-full max-w-6xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {skills.map(({ id, name, icon }, index) => (
             <motion.div
               key={id}
-              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }} // Adjusted delay for a smoother stagger
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true, amount: 0.6 }}
-              className="flex flex-col items-center justify-center bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-xl shadow-slate-950/50 
-                       border border-slate-700/50 cursor-pointer 
-                       hover:bg-slate-700/70 hover:shadow-purple-500/30 hover:translate-y-[-5px] 
-                       transition-all duration-300 ease-in-out group relative overflow-hidden"
+              className="group relative flex flex-col items-center justify-center 
+                         bg-slate-900/60 backdrop-blur-lg border border-slate-700/40 
+                         rounded-2xl p-8 shadow-lg cursor-pointer 
+                         hover:-translate-y-2 hover:shadow-purple-500/40 transition-all duration-500"
             >
-              {/* Subtle gradient overlay for the card background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-900/0 to-slate-800/0 group-hover:from-purple-900/10 group-hover:to-slate-800/10 transition-all duration-500"></div>
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-700/0 to-cyan-500/0 group-hover:from-purple-600/20 group-hover:to-cyan-400/20 transition-all duration-500"></div>
 
               {/* Icon */}
-              <div className="relative z-10 p-2 rounded-full transition-transform duration-300 group-hover:scale-110">
+              <div className="relative z-10 p-3 rounded-full bg-slate-800/50 shadow-md group-hover:scale-110 transition-transform duration-300">
                 {icon}
               </div>
-              
+
               {/* Skill Name */}
-              <p className="relative z-10 mt-4 text-xl font-semibold text-gray-100 tracking-wide">{name}</p>
+              <p className="relative z-10 mt-4 text-lg md:text-xl font-semibold text-gray-100 tracking-wide">
+                {name}
+              </p>
             </motion.div>
           ))}
         </div>
