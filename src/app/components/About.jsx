@@ -12,10 +12,11 @@ const About = () => {
   const pinContainerRef = useRef(null);
   const scrollContentRef = useRef(null);
   const backgroundRef = useRef(null);
+  const textContainerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background
+      // Parallax background with gradient animation
       gsap.to(backgroundRef.current, {
         y: (pinContainerRef.current.offsetHeight * 0.2),
         ease: "none",
@@ -27,43 +28,38 @@ const About = () => {
         },
       });
 
-      // Animate text paragraphs one by one
-      gsap.utils.toArray(".about-text p").forEach((p, i) => {
-        gsap.fromTo(
+      // Animate text paragraphs to flow upward
+      const textElements = gsap.utils.toArray(".about-text p");
+      const cardElements = gsap.utils.toArray(".about-card");
+      
+      // Create a timeline for the scrolling text effect
+      const textTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: textContainerRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1,
+          pin: false,
+        }
+      });
+
+      // Animate each paragraph to move upward
+      textElements.forEach((p, i) => {
+        textTimeline.fromTo(
           p,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: p,
-              start: "top 90%",
-              end: "top 70%",
-              toggleActions: "play none none reverse",
-            },
-          }
+          { y: 100, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+          i * 0.3
         );
       });
 
-      // Animate cards
-      gsap.utils.toArray(".about-card").forEach((card) => {
-        gsap.fromTo(
+      // Animate cards after text
+      cardElements.forEach((card, i) => {
+        textTimeline.fromTo(
           card,
-          { opacity: 0, y: 100 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              end: "center 60%",
-              toggleActions: "play none none reverse",
-            },
-          }
+          { y: 100, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+          textElements.length * 0.3 + i * 0.2
         );
       });
     }, sectionRef);
@@ -110,7 +106,26 @@ const About = () => {
 
         @media (min-width: 768px) {
           #about-pin-container {
-            min-height: 250vh; /* reduced extra spacing */
+            min-height: 200vh; /* Adjusted for better scrolling experience */
+          }
+        }
+
+        /* Gradient animation for background */
+        .animated-bg-about {
+          background: linear-gradient(-45deg, #6a00f4, #2400ff, #00d4ff, #ff00d4);
+          background-size: 400% 400%;
+          animation: gradientMove 12s ease infinite;
+        }
+
+        @keyframes gradientMove {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
           }
         }
       `}</style>
@@ -120,8 +135,8 @@ const About = () => {
         ref={sectionRef}
         className="relative w-full text-white overflow-hidden"
       >
-        {/* Gradient Background */}
-        <div ref={backgroundRef} className="absolute inset-0 -z-20 animated-bg"></div>
+        {/* Gradient Background with Animation */}
+        <div ref={backgroundRef} className="absolute inset-0 -z-20 animated-bg-about"></div>
 
         {/* Floating Bubbles */}
         <div className="bubbles-container -z-10">
@@ -133,65 +148,70 @@ const About = () => {
         {/* Pinned Container */}
         <div id="about-pin-container" ref={pinContainerRef} className="pt-24 md:pt-40">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row min-h-[100vh] px-6">
-            {/* Left Fixed Title */}
-            <div className="md:w-1/3 flex justify-center items-start md:items-center md:h-screen py-8 md:py-0">
-              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-center md:text-left md:sticky md:top-1/2 md:-translate-y-1/2">
+            {/* Centered Title */}
+            <div className="w-full flex justify-center items-center py-8 md:py-0 md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
+              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-center">
                 About Junaid
               </h2>
             </div>
 
-            {/* Right Flowing Content */}
+            {/* Scrolling Content */}
             <div
               ref={scrollContentRef}
-              className="md:w-2/3 md:ml-10 py-10 md:py-0 space-y-24 flex flex-col justify-start items-start"
+              className="w-full py-10 md:py-0 flex flex-col justify-start items-center"
             >
-              {/* Text Lines */}
-              <div className="about-text space-y-8 text-lg sm:text-xl leading-relaxed max-w-2xl">
-                <p>
-                  Hi, I'm <span className="text-purple-400 font-semibold">Junaid</span>, a{" "}
-                  <span className="text-pink-400 font-semibold">MERN Stack & WordPress Developer</span> with a passion for building impactful digital solutions.
-                </p>
-                <p>
-                  My expertise lies in{" "}
-                  <span className="text-purple-400 font-semibold">React.js, Next.js, Node.js, Express.js, and MongoDB</span>, enabling me to build full-stack applications that perform and scale.
-                </p>
-                <p>
-                  I’m the creator of <span className="text-purple-400 font-semibold">Snipix</span>, a SaaS link shortener with authentication, analytics, and a great user experience.
-                </p>
-                <p>
-                  Alongside SaaS, I craft modern, responsive{" "}
-                  <span className="text-pink-400 font-semibold">WordPress websites</span> using Elementor that empower brands and businesses.
-                </p>
-              </div>
+              <div 
+                ref={textContainerRef}
+                className="max-w-4xl w-full space-y-24"
+              >
+                {/* Text Lines */}
+                <div className="about-text space-y-16 text-lg sm:text-xl leading-relaxed">
+                  <p>
+                    Hi, I'm <span className="text-purple-400 font-semibold">Junaid</span>, a{" "}
+                    <span className="text-pink-400 font-semibold">MERN Stack & WordPress Developer</span> with a passion for building impactful digital solutions.
+                  </p>
+                  <p>
+                    My expertise lies in{" "}
+                    <span className="text-purple-400 font-semibold">React.js, Next.js, Node.js, Express.js, and MongoDB</span>, enabling me to build full-stack applications that perform and scale.
+                  </p>
+                  <p>
+                    I'm the creator of <span className="text-purple-400 font-semibold">Snipix</span>, a SaaS link shortener with authentication, analytics, and a great user experience.
+                  </p>
+                  <p>
+                    Alongside SaaS, I craft modern, responsive{" "}
+                    <span className="text-pink-400 font-semibold">WordPress websites</span> using Elementor that empower brands and businesses.
+                  </p>
+                </div>
 
-              {/* Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-                {[
-                  {
-                    icon: <FaCode className="text-5xl text-purple-400 mb-4" />,
-                    title: "Clean Code & Performance",
-                    desc: "Writing scalable and maintainable code for long-term success.",
-                  },
-                  {
-                    icon: <FaPaintBrush className="text-5xl text-pink-400 mb-4" />,
-                    title: "Attractive Design",
-                    desc: "Crafting modern, responsive, and user-friendly UI/UX.",
-                  },
-                  {
-                    icon: <FaRocket className="text-5xl text-cyan-400 mb-4" />,
-                    title: "Scalable Solutions",
-                    desc: "Building robust applications ready to grow with your business.",
-                  },
-                ].map((card, i) => (
-                  <div
-                    key={i}
-                    className="about-card flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
-                  >
-                    {card.icon}
-                    <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
-                    <p className="text-gray-300 text-base">{card.desc}</p>
-                  </div>
-                ))}
+                {/* Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full pb-24">
+                  {[
+                    {
+                      icon: <FaCode className="text-5xl text-purple-400 mb-4" />,
+                      title: "Clean Code & Performance",
+                      desc: "Writing scalable and maintainable code for long-term success.",
+                    },
+                    {
+                      icon: <FaPaintBrush className="text-5xl text-pink-400 mb-4" />,
+                      title: "Attractive Design",
+                      desc: "Crafting modern, responsive, and user-friendly UI/UX.",
+                    },
+                    {
+                      icon: <FaRocket className="text-5xl text-cyan-400 mb-4" />,
+                      title: "Scalable Solutions",
+                      desc: "Building robust applications ready to grow with your business.",
+                    },
+                  ].map((card, i) => (
+                    <div
+                      key={i}
+                      className="about-card flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
+                    >
+                      {card.icon}
+                      <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
+                      <p className="text-gray-300 text-base">{card.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
