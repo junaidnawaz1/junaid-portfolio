@@ -10,33 +10,26 @@ const Hero = () => {
     // Timeline for smooth staggered animations
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Image Animation: Scale, Opacity, and a subtle clip-path reveal for a modern look
+    // Image Animation: Scale, Opacity, and a subtle clip-path reveal
     tl.fromTo(
-      ".hero-img-container", // Target the container for the clip-path effect
+      ".hero-img-container",
       { scale: 0.9, opacity: 0, clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" },
       { scale: 1, opacity: 1, clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.4 }
     )
-      // Staggered Text Animations with a tighter, faster-paced entrance
+      // Staggered text animations
       .fromTo(".hero-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.7")
       .fromTo(".hero-subtitle", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.4")
       .fromTo(".hero-desc", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.3")
-      // Buttons last
       .fromTo(".hero-buttons", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, "-=0.2");
   }, []);
 
   return (
     <section
       id="home"
-      // Change: Switched from bg-slate-950 to bg-slate-900
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-slate-900 text-white px-6 pt-28 md:pt-0 relative overflow-hidden"
+      className="animated-bg min-h-screen flex flex-col md:flex-row items-center justify-center text-white px-6 pt-28 md:pt-0 relative overflow-hidden"
     >
-      {/* Background Effect: Subtle radial gradient and a grid pattern for a tech feel */}
-      {/* Change: Adjusted opacity of the overlay to maintain color consistency */}
-      <div className="absolute inset-0 bg-slate-900 opacity-90"></div>
-      <div className="absolute inset-0 z-0 opacity-15" style={{
-        backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
-        backgroundSize: '25px 25px'
-      }}></div>
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
 
       {/* Left Side - Profile Image */}
       <div className="flex justify-center md:w-1/2 mb-12 md:mb-0 z-10">
@@ -56,7 +49,7 @@ const Hero = () => {
         </h1>
 
         <h2 className="hero-subtitle text-xl md:text-3xl font-light mb-6 text-gray-200">
-          A passionate{' '}
+          A passionate{" "}
           <span className="font-semibold text-purple-400">
             <Typewriter
               words={[
@@ -74,7 +67,7 @@ const Hero = () => {
           </span>
         </h2>
 
-        <p className="hero-desc text-gray-400 max-w-md mx-auto md:mx-0 mb-8 leading-relaxed">
+        <p className="hero-desc text-gray-300 max-w-md mx-auto md:mx-0 mb-8 leading-relaxed">
           I build modern, high-performance web applications with React.js, Next.js, Node.js, and WordPress. Passionate about creating user-friendly designs and scalable solutions.
         </p>
 
