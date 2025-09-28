@@ -27,10 +27,30 @@ const About = () => {
         },
       });
 
-      // Animate each content block on scroll
-      gsap.utils.toArray(scrollContentRef.current.children).forEach((child) => {
+      // Animate text paragraphs one by one
+      gsap.utils.toArray(".about-text p").forEach((p, i) => {
         gsap.fromTo(
-          child,
+          p,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: p,
+              start: "top 90%",
+              end: "top 70%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
+      // Animate cards
+      gsap.utils.toArray(".about-card").forEach((card) => {
+        gsap.fromTo(
+          card,
           { opacity: 0, y: 100 },
           {
             opacity: 1,
@@ -38,9 +58,9 @@ const About = () => {
             duration: 1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: child,
+              trigger: card,
               start: "top 90%",
-              end: "center 50%",
+              end: "center 60%",
               toggleActions: "play none none reverse",
             },
           }
@@ -90,7 +110,7 @@ const About = () => {
 
         @media (min-width: 768px) {
           #about-pin-container {
-            min-height: 350vh;
+            min-height: 250vh; /* reduced extra spacing */
           }
         }
       `}</style>
@@ -123,22 +143,22 @@ const About = () => {
             {/* Right Flowing Content */}
             <div
               ref={scrollContentRef}
-              className="md:w-2/3 md:ml-10 py-10 md:py-0 space-y-24 flex flex-col justify-start items-center md:items-start"
+              className="md:w-2/3 md:ml-10 py-10 md:py-0 space-y-24 flex flex-col justify-start items-start"
             >
-              {/* Text Block */}
-              <div className="min-h-[70vh] w-full flex flex-col justify-center bg-slate-900/50 backdrop-blur-md rounded-xl shadow-2xl p-6 sm:p-10 border border-slate-700/50">
+              {/* Text Lines */}
+              <div className="about-text space-y-8 text-lg sm:text-xl leading-relaxed max-w-2xl">
                 <p>
                   Hi, I'm <span className="text-purple-400 font-semibold">Junaid</span>, a{" "}
                   <span className="text-pink-400 font-semibold">MERN Stack & WordPress Developer</span> with a passion for building impactful digital solutions.
                 </p>
-                <p className="mt-4">
+                <p>
                   My expertise lies in{" "}
                   <span className="text-purple-400 font-semibold">React.js, Next.js, Node.js, Express.js, and MongoDB</span>, enabling me to build full-stack applications that perform and scale.
                 </p>
-                <p className="mt-4">
+                <p>
                   I’m the creator of <span className="text-purple-400 font-semibold">Snipix</span>, a SaaS link shortener with authentication, analytics, and a great user experience.
                 </p>
-                <p className="mt-4">
+                <p>
                   Alongside SaaS, I craft modern, responsive{" "}
                   <span className="text-pink-400 font-semibold">WordPress websites</span> using Elementor that empower brands and businesses.
                 </p>
@@ -165,11 +185,11 @@ const About = () => {
                 ].map((card, i) => (
                   <div
                     key={i}
-                    className="flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
+                    className="about-card flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
                   >
                     {card.icon}
                     <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
-                    <p className="text-gray-400 text-base">{card.desc}</p>
+                    <p className="text-gray-300 text-base">{card.desc}</p>
                   </div>
                 ))}
               </div>
