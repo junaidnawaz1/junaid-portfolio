@@ -36,7 +36,7 @@ const About = () => {
       const textTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: textContainerRef.current,
-          start: "top 80%",
+          start: "top 70%",
           end: "bottom 20%",
           scrub: 1,
           pin: false,
@@ -110,14 +110,30 @@ const About = () => {
           }
         }
 
-        /* Gradient animation for background */
-        .animated-bg-about {
-          background: linear-gradient(-45deg, #6a00f4, #2400ff, #00d4ff, #ff00d4);
+        /* New background animation similar to WISE */
+        .wise-bg {
+          background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
           background-size: 400% 400%;
-          animation: gradientMove 12s ease infinite;
+          animation: wiseGradient 15s ease infinite;
+          position: relative;
+          overflow: hidden;
         }
 
-        @keyframes gradientMove {
+        .wise-bg::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+          animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes wiseGradient {
           0% {
             background-position: 0% 50%;
           }
@@ -128,6 +144,15 @@ const About = () => {
             background-position: 0% 50%;
           }
         }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 0.8;
+          }
+        }
       `}</style>
 
       <section
@@ -135,8 +160,8 @@ const About = () => {
         ref={sectionRef}
         className="relative w-full text-white overflow-hidden"
       >
-        {/* Gradient Background with Animation */}
-        <div ref={backgroundRef} className="absolute inset-0 -z-20 animated-bg-about"></div>
+        {/* New WISE-style Background */}
+        <div ref={backgroundRef} className="absolute inset-0 -z-20 wise-bg"></div>
 
         {/* Floating Bubbles */}
         <div className="bubbles-container -z-10">
@@ -146,72 +171,70 @@ const About = () => {
         </div>
 
         {/* Pinned Container */}
-        <div id="about-pin-container" ref={pinContainerRef} className="pt-24 md:pt-40">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row min-h-[100vh] px-6">
-            {/* Centered Title */}
-            <div className="w-full flex justify-center items-center py-8 md:py-0 md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
-              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-center">
-                About Junaid
-              </h2>
-            </div>
+        <div id="about-pin-container" ref={pinContainerRef} className="pt-24 md:pt-32">
+          {/* About Junaid Heading at the Top */}
+          <div className="w-full flex justify-center items-center py-8 md:py-12">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-center">
+              About Junaid
+            </h2>
+          </div>
 
-            {/* Scrolling Content */}
-            <div
-              ref={scrollContentRef}
-              className="w-full py-10 md:py-0 flex flex-col justify-start items-center"
+          {/* Scrolling Content */}
+          <div
+            ref={scrollContentRef}
+            className="w-full py-10 md:py-0 flex flex-col justify-start items-center"
+          >
+            <div 
+              ref={textContainerRef}
+              className="max-w-4xl w-full space-y-24 px-6"
             >
-              <div 
-                ref={textContainerRef}
-                className="max-w-4xl w-full space-y-24"
-              >
-                {/* Text Lines */}
-                <div className="about-text space-y-16 text-lg sm:text-xl leading-relaxed">
-                  <p>
-                    Hi, I'm <span className="text-purple-400 font-semibold">Junaid</span>, a{" "}
-                    <span className="text-pink-400 font-semibold">MERN Stack & WordPress Developer</span> with a passion for building impactful digital solutions.
-                  </p>
-                  <p>
-                    My expertise lies in{" "}
-                    <span className="text-purple-400 font-semibold">React.js, Next.js, Node.js, Express.js, and MongoDB</span>, enabling me to build full-stack applications that perform and scale.
-                  </p>
-                  <p>
-                    I'm the creator of <span className="text-purple-400 font-semibold">Snipix</span>, a SaaS link shortener with authentication, analytics, and a great user experience.
-                  </p>
-                  <p>
-                    Alongside SaaS, I craft modern, responsive{" "}
-                    <span className="text-pink-400 font-semibold">WordPress websites</span> using Elementor that empower brands and businesses.
-                  </p>
-                </div>
+              {/* Text Lines */}
+              <div className="about-text space-y-16 text-lg sm:text-xl leading-relaxed">
+                <p>
+                  Hi, I'm <span className="text-purple-400 font-semibold">Junaid</span>, a{" "}
+                  <span className="text-pink-400 font-semibold">MERN Stack & WordPress Developer</span> with a passion for building impactful digital solutions.
+                </p>
+                <p>
+                  My expertise lies in{" "}
+                  <span className="text-purple-400 font-semibold">React.js, Next.js, Node.js, Express.js, and MongoDB</span>, enabling me to build full-stack applications that perform and scale.
+                </p>
+                <p>
+                  I'm the creator of <span className="text-purple-400 font-semibold">Snipix</span>, a SaaS link shortener with authentication, analytics, and a great user experience.
+                </p>
+                <p>
+                  Alongside SaaS, I craft modern, responsive{" "}
+                  <span className="text-pink-400 font-semibold">WordPress websites</span> using Elementor that empower brands and businesses.
+                </p>
+              </div>
 
-                {/* Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full pb-24">
-                  {[
-                    {
-                      icon: <FaCode className="text-5xl text-purple-400 mb-4" />,
-                      title: "Clean Code & Performance",
-                      desc: "Writing scalable and maintainable code for long-term success.",
-                    },
-                    {
-                      icon: <FaPaintBrush className="text-5xl text-pink-400 mb-4" />,
-                      title: "Attractive Design",
-                      desc: "Crafting modern, responsive, and user-friendly UI/UX.",
-                    },
-                    {
-                      icon: <FaRocket className="text-5xl text-cyan-400 mb-4" />,
-                      title: "Scalable Solutions",
-                      desc: "Building robust applications ready to grow with your business.",
-                    },
-                  ].map((card, i) => (
-                    <div
-                      key={i}
-                      className="about-card flex flex-col items-start bg-slate-800/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-slate-700/40 hover:-translate-y-1 transition-all duration-500"
-                    >
-                      {card.icon}
-                      <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
-                      <p className="text-gray-300 text-base">{card.desc}</p>
-                    </div>
-                  ))}
-                </div>
+              {/* Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full pb-24">
+                {[
+                  {
+                    icon: <FaCode className="text-5xl text-purple-400 mb-4" />,
+                    title: "Clean Code & Performance",
+                    desc: "Writing scalable and maintainable code for long-term success.",
+                  },
+                  {
+                    icon: <FaPaintBrush className="text-5xl text-pink-400 mb-4" />,
+                    title: "Attractive Design",
+                    desc: "Crafting modern, responsive, and user-friendly UI/UX.",
+                  },
+                  {
+                    icon: <FaRocket className="text-5xl text-cyan-400 mb-4" />,
+                    title: "Scalable Solutions",
+                    desc: "Building robust applications ready to grow with your business.",
+                  },
+                ].map((card, i) => (
+                  <div
+                    key={i}
+                    className="about-card flex flex-col items-start bg-black/30 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-gray-800/60 hover:-translate-y-1 transition-all duration-500"
+                  >
+                    {card.icon}
+                    <h3 className="font-bold text-2xl mb-2">{card.title}</h3>
+                    <p className="text-gray-300 text-base">{card.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
