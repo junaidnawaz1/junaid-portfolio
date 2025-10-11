@@ -75,7 +75,7 @@ const Hero = () => {
         <div className="hero-buttons flex flex-row gap-4 justify-center md:justify-start flex-wrap">
           {/* Download CV */}
           <a
-            href="/Junaid_CV.pdf"
+            href="/Junaid_Nawaz's_CV.pdf"
             download
             className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 transition-all duration-300 shadow-xl shadow-purple-600/30 transform hover:scale-[1.05] hover:shadow-purple-600/50 border-2 border-transparent hover:border-white/20"
           >
