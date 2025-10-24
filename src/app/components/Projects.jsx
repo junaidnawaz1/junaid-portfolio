@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-// Replacing react-icons/fa with standard Lucide-React icons to resolve the compilation error
-import { ExternalLink, Code, Globe } from "lucide-react"; 
+// Replaced lucide-react imports with inline SVG icons to remove external dependency
+// import { ExternalLink, Code, Globe } from "lucide-react"; 
 
 const Projects = () => {
   const mernProjects = [
@@ -54,6 +54,19 @@ const Projects = () => {
     },
   };
 
+  // SVG Components for Code, Globe, and External Link
+  const CodeIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+  );
+
+  const GlobeIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" x2="22" y1="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+  );
+
+  const ExternalLinkIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg>
+  );
+
   const renderProjectCard = (project) => (
     <motion.div
       key={project.id}
@@ -81,7 +94,23 @@ const Projects = () => {
           alt={project.title}
           // The image scaling effect is kept and looks great!
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          // In React, use 'onError' (camelCase) instead of 'onerror' (lowercase HTML)
+          onError={(e) => {
+            // Check if the placeholder image element exists (it's the next sibling)
+            const placeholder = e.currentTarget.nextElementSibling;
+            if (placeholder) {
+              // Show the placeholder and hide the main image
+              placeholder.style.opacity = 1;
+              e.currentTarget.style.opacity = 0;
+            }
+          }}
         />
+        {/* Placeholder image fallback in case the external URL fails (good practice) */}
+        <img 
+            src={`https://placehold.co/400x256/1e293b/94a3b8?text=Image+Loading...`} 
+            alt="Placeholder" 
+            className="absolute inset-0 w-full h-full object-cover p-10 opacity-0 transition-opacity duration-300"
+        />
       </div>
 
       {/* Content */}
@@ -126,7 +155,7 @@ const Projects = () => {
                      bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
         >
           Visit Website
-          <ExternalLink className="ml-2 text-sm" /> 
+          <ExternalLinkIcon className="ml-2 text-sm w-4 h-4" /> 
         </a>
       </div>
     </motion.div>
@@ -158,7 +187,7 @@ const Projects = () => {
           // MOBILE CHANGE: Subheading size is responsive
           className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 inline-flex items-center text-purple-400 border-b-2 border-pink-400/50 pb-1 px-2"
         >
-          <Code className="inline-block mr-2 sm:mr-3 text-pink-400 text-xl sm:text-2xl" /> MERN Stack Solutions
+          <CodeIcon className="inline-block mr-2 sm:mr-3 text-pink-400 text-xl sm:text-2xl w-6 h-6" /> MERN Stack Solutions
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mt-8">
           {mernProjects.map(renderProjectCard)}
@@ -178,7 +207,7 @@ const Projects = () => {
           // MOBILE CHANGE: Subheading size is responsive
           className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-8 inline-flex items-center text-purple-400 border-b-2 border-pink-400/50 pb-1 px-2"
         >
-          <Globe className="inline-block mr-2 sm:mr-3 text-pink-400 text-xl sm:text-2xl" /> WordPress & E-commerce
+          <GlobeIcon className="inline-block mr-2 sm:mr-3 text-pink-400 text-xl sm:text-2xl w-6 h-6" /> WordPress & E-commerce
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 mt-8">
           {wpProjects.map(renderProjectCard)}
@@ -189,4 +218,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
