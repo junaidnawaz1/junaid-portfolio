@@ -45,6 +45,53 @@ const Projects = () => {
       tech: ["React.js" , "Node.js" , "MongoDB", "TailwindCSS", "Vercel"], // ✅ new
 
     },
+    {
+
+      id: 3,
+
+      title: "Charsi|Blog post website",
+
+      img: "https://i.ibb.co/zhGQvpM8/image.png",
+
+      link: "https://charsi-sage.vercel.app/userdashboard",
+
+      desc: "A full-stack Bloging Website",
+
+      special: true,
+
+      tech: ["Next.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"], // ✅ new
+
+    },
+    {
+
+      id: 4,
+
+      title: "A Cutting Salon Booking Website",
+
+      img: "https://i.ibb.co/B5gSf53f/image.png",
+
+      link: "https://straight-edge.vercel.app/customer",
+
+      desc: "A cutting salon booking website customers can book an appointment easily with statistics",
+
+      tech: ["Next.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"], // ✅ new
+
+    },
+    {
+
+      id: 5,
+
+      title: "Xavique| An E-commerce Site",
+
+      img: "https://i.ibb.co/MDhDRdGq/image.png",
+
+      link: "https://xavique.vercel.app/",
+
+      desc: "A full-stack E-commerce cloth seliing website built with MERN stack.",
+
+      tech: ["Next.js", "Node.js", "Express.js", "MongoDB", "TailwindCSS"], // ✅ new
+
+    },
 
   ];
 
